@@ -21,7 +21,10 @@ BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pygobject3 >= 3.0
+BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	xmlto
+Requires(post,postun):	gtk-update-icon-cache
+Requires:	hicolor-icon-theme
 Requires:	python-dbus
 Requires:	python-inotify
 Requires:	python-pygobject3
