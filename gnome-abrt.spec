@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests	# "make check" run
+%bcond_with	tests	# "make check" run (some pylint false positive?)
 #
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
@@ -11,12 +11,14 @@ License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
 # Source0-md5:	9cdb88de911163980add38fad1e3df72
+Patch0:		%{name}-pylint.patch
 URL:		https://fedorahosted.org/abrt/
 BuildRequires:	asciidoc
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libreport-gtk-devel >= 2.0.19
+%{?with_tests:BuildRequires:	libreport-python}
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python-devel >= 1:2.7
@@ -40,6 +42,7 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
