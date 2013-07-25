@@ -5,19 +5,19 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	0.2.10
+Version:	0.2.12
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	9cdb88de911163980add38fad1e3df72
+# Source0-md5:	d04501a945aa65fca038e20df2869bb8
 Patch0:		%{name}-pylint.patch
 URL:		https://fedorahosted.org/abrt/
 BuildRequires:	asciidoc
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libreport-gtk-devel >= 2.0.19
+BuildRequires:	libreport-gtk-devel >= 2.0.20
 %{?with_tests:BuildRequires:	libreport-python}
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
@@ -81,6 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-abrt
 %dir %{py_sitedir}/gnome_abrt
 %{py_sitedir}/gnome_abrt/*.py[co]
+%dir %{py_sitedir}/gnome_abrt/url
+%{py_sitedir}/gnome_abrt/url/*.py[co]
 %dir %{py_sitedir}/gnome_abrt/wrappers
 %{py_sitedir}/gnome_abrt/wrappers/__init__.py[co]
 %attr(755,root,root) %{py_sitedir}/gnome_abrt/wrappers/_wrappers.so
@@ -88,4 +90,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/gnome-abrt.desktop
 %{_iconsdir}/hicolor/*/apps/gnome-abrt.png
 %{_iconsdir}/hicolor/*/status/gnome-abrt.png
-%{_mandir}/man6/gnome-abrt.6*
+%{_mandir}/man1/gnome-abrt.1*
