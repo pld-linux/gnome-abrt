@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	0.2.12
+Version:	0.3.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	d04501a945aa65fca038e20df2869bb8
+# Source0-md5:	9c9e44a255b1b63f3adc31c834f30b2e
 Patch0:		%{name}-pylint.patch
 URL:		https://fedorahosted.org/abrt/
 BuildRequires:	asciidoc
@@ -24,6 +24,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-pygobject3 >= 3.0
 BuildRequires:	rpmbuild(macros) >= 1.596
+BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -45,10 +46,12 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 %setup -q
 %patch0 -p1
 
+%{__sed} -i -e '1s,#!/usr/bin/env python,#!/usr/bin/python,' src/gnome-abrt
+
 %build
 %configure \
-	%{!?with_tests:PYLINT=/bin/true} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{!?with_tests:--with-nopylint}
 
 %{__make}
 
