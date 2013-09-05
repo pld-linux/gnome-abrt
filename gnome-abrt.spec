@@ -22,7 +22,7 @@ BuildRequires:	libreport-gtk-devel >= 2.0.20
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python-devel >= 1:2.7
-BuildRequires:	python-pygobject3 >= 3.0
+BuildRequires:	python-pygobject3-devel >= 3.0
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
