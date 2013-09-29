@@ -6,7 +6,7 @@ Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
 Version:	0.3.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
@@ -92,8 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/gnome_abrt/wrappers/__init__.py[co]
 %attr(755,root,root) %{py_sitedir}/gnome_abrt/wrappers/_wrappers.so
 %{_datadir}/gnome-abrt
-# XXX: some common dir? but no other packages seem to use it
-%dir %{_datadir}/appdata
 %{_datadir}/appdata/gnome-abrt.appdata.xml
 %{_desktopdir}/gnome-abrt.desktop
 %{_iconsdir}/hicolor/*/apps/gnome-abrt.png
