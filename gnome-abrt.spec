@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	0.3.1
-Release:	2
+Version:	0.3.3
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	da53340545295eed5066979c72620bee
+# Source0-md5:	ba51ea0a7684d164f57740ff3ab81d26
 Patch0:		%{name}-pylint.patch
 URL:		https://fedorahosted.org/abrt/
 BuildRequires:	abrt-gui-devel >= 2.1.7
