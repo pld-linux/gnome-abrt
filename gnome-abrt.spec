@@ -1,12 +1,12 @@
 #
 # Conditional build:
 %bcond_with	tests	# "make check" run (some pylint false positive?)
-#
+
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
 Version:	0.3.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
@@ -32,7 +32,7 @@ Requires:	abrt-gui-libs >= 2.1.7
 Requires:	hicolor-icon-theme
 Requires:	libreport-python
 Requires:	python-dbus
-Requires:	python-inotify
+Requires:	python-pyinotify
 Requires:	python-pygobject3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
