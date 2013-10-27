@@ -12,7 +12,7 @@ Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
 # Source0-md5:	ba51ea0a7684d164f57740ff3ab81d26
 Patch0:		%{name}-pylint.patch
-URL:		https://fedorahosted.org/abrt/
+URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
 BuildRequires:	asciidoc
 BuildRequires:	gettext-devel >= 0.17
