@@ -28,12 +28,13 @@ BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
 Requires(post,postun):	gtk-update-icon-cache
+Requires:	abrt-dbus
 Requires:	abrt-gui-libs >= 2.1.7
 Requires:	hicolor-icon-theme
 Requires:	libreport-python
 Requires:	python-dbus
-Requires:	python-pyinotify
 Requires:	python-pygobject3
+Requires:	python-pyinotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %py_postclean
 
 # just a copy of cs
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/cs_CZ
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cs_CZ
 
 %find_lang %{name}
 
