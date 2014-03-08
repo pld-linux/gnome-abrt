@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	0.3.5
+Version:	0.3.6
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	b32290dfe856cc7bfa09eb4269a46543
+# Source0-md5:	f0c8978dfc52d58995bd6c678b9ba56f
 Patch0:		%{name}-pylint.patch
 URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
@@ -19,10 +19,10 @@ BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libreport-gtk-devel >= 2.0.20
-%{?with_tests:BuildRequires:	libreport-python}
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python-devel >= 1:2.7
+%{?with_tests:BuildRequires:	python-libreport}
 BuildRequires:	python-pygobject3-devel >= 3.0
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
@@ -33,7 +33,7 @@ Requires:	abrt-gui-libs >= 2.1.7
 Requires:	hicolor-icon-theme
 Requires:	libreport-python
 Requires:	python-dbus
-Requires:	python-pygobject3
+Requires:	python-pygobject3 >= 3.0
 Requires:	python-pyinotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
