@@ -15,7 +15,7 @@ Patch0:		%{name}-pylint.patch
 URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
 BuildRequires:	asciidoc
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libreport-gtk-devel >= 2.0.20
