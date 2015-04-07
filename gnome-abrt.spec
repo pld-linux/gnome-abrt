@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.0.0
-Release:	2
+Version:	1.1.0
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	768273f4f8729fe98aa8913041027532
+# Source0-md5:	719fa79f2347716663be642531f8c7ac
 Patch0:		%{name}-pylint.patch
 URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
@@ -21,9 +21,9 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libreport-gtk-devel >= 2.0.20
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
-BuildRequires:	python-devel >= 1:2.7
-%{?with_tests:BuildRequires:	python-libreport}
-BuildRequires:	python-pygobject3-devel >= 3.0
+BuildRequires:	python3-devel >= 1:3.2
+%{?with_tests:BuildRequires:	python3-libreport}
+BuildRequires:	python3-pygobject3-devel >= 3.0
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
@@ -31,10 +31,10 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires:	abrt-dbus
 Requires:	abrt-gui-libs >= 2.1.7
 Requires:	hicolor-icon-theme
-Requires:	libreport-python
-Requires:	python-dbus
-Requires:	python-pygobject3 >= 3.0
-Requires:	python-pyinotify
+Requires:	python3-dbus
+Requires:	python3-libreport
+Requires:	python3-pygobject3 >= 3.0
+Requires:	python3-pyinotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gnome_abrt/wrappers/*.la
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/gnome_abrt/wrappers/*.la
 %py_postclean
 
 # just a copy of cs
@@ -85,13 +85,16 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-abrt
-%dir %{py_sitedir}/gnome_abrt
-%{py_sitedir}/gnome_abrt/*.py[co]
-%dir %{py_sitedir}/gnome_abrt/url
-%{py_sitedir}/gnome_abrt/url/*.py[co]
-%dir %{py_sitedir}/gnome_abrt/wrappers
-%{py_sitedir}/gnome_abrt/wrappers/__init__.py[co]
-%attr(755,root,root) %{py_sitedir}/gnome_abrt/wrappers/_wrappers.so
+%dir %{py3_sitedir}/gnome_abrt
+%{py3_sitedir}/gnome_abrt/*.py
+%{py3_sitedir}/gnome_abrt/__pycache__
+%dir %{py3_sitedir}/gnome_abrt/url
+%{py3_sitedir}/gnome_abrt/url/*.py
+%{py3_sitedir}/gnome_abrt/url/__pycache__
+%dir %{py3_sitedir}/gnome_abrt/wrappers
+%{py3_sitedir}/gnome_abrt/wrappers/__init__.py
+%{py3_sitedir}/gnome_abrt/wrappers/__pycache__
+%attr(755,root,root) %{py3_sitedir}/gnome_abrt/wrappers/_wrappers.so
 %{_datadir}/gnome-abrt
 %{_datadir}/appdata/gnome-abrt.appdata.xml
 %{_desktopdir}/gnome-abrt.desktop
