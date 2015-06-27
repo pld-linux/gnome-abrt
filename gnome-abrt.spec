@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.1.0
+Version:	1.2.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	719fa79f2347716663be642531f8c7ac
+# Source0-md5:	9b2d3e364e735f6a7401a84462951232
 Patch0:		%{name}-pylint.patch
 URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
@@ -21,12 +21,13 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libreport-gtk-devel >= 2.0.20
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
-BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.4
 %{?with_tests:BuildRequires:	python3-libreport}
 BuildRequires:	python3-pygobject3-devel >= 3.0
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
+BuildRequires:	xorg-lib-libX11-devel
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	abrt-dbus
 Requires:	abrt-gui-libs >= 2.1.7
@@ -98,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome-abrt
 %{_datadir}/appdata/gnome-abrt.appdata.xml
 %{_desktopdir}/gnome-abrt.desktop
-%{_iconsdir}/hicolor/*/apps/gnome-abrt.png
-%{_iconsdir}/hicolor/*/status/gnome-abrt.png
+%{_iconsdir}/hicolor/*x*/apps/gnome-abrt.png
+%{_iconsdir}/hicolor/*x*/status/gnome-abrt.png
+%{_iconsdir}/hicolor/symbolic/apps/gnome-abrt-symbolic.svg
 %{_mandir}/man1/gnome-abrt.1*
