@@ -5,12 +5,12 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.2.3
+Version:	1.2.4
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	163150b7f41705918e98d1f76e3c8bca
+# Source0-md5:	8264b228669568e75c15934340770093
 Patch0:		%{name}-pylint.patch
 URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
 BuildRequires:	abrt-gui-devel >= 2.1.7
@@ -56,6 +56,8 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 %{__sed} -i -e 's#-pedantic##g' configure.ac
 %{__sed} -i -e '1s,#!/usr/bin/env python,#!/usr/bin/python,' src/gnome-abrt
 
+%{__sed} -n -e '/^%%changelog/,$' gnome-abrt.spec.in | tail -n +2 > changelog
+
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -77,8 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/gnome_abrt/wrappers/*.la
 %py_postclean
 
-%find_lang %{name}
+# packaged as %doc
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/gnome-abrt/README.md
 
+%find_lang %{name}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -90,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc README.md changelog
 %attr(755,root,root) %{_bindir}/gnome-abrt
 %dir %{py3_sitedir}/gnome_abrt
 %{py3_sitedir}/gnome_abrt/*.py
