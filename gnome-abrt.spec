@@ -6,7 +6,7 @@ Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
 Version:	1.2.5
-Release:	5
+Release:	6
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
