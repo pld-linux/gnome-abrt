@@ -13,7 +13,7 @@ Group:		Applications/System
 Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	2529440838d44afe7c4696e2f76b4986
 URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
-BuildRequires:	abrt-devel >= 2.4.0
+BuildRequires:	abrt-gui-devel >= 2.4.0
 BuildRequires:	asciidoc
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
