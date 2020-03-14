@@ -23,6 +23,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python3-devel >= 1:3.4
+%{?with_tests:BuildRequires:	python3-humanize}
 %{?with_tests:BuildRequires:	python3-libreport}
 BuildRequires:	python3-pygobject3-devel >= 3.29.1
 BuildRequires:	rpmbuild(macros) >= 1.596
@@ -34,6 +35,7 @@ Requires:	abrt-gui-libs >= 2.4.0
 Requires:	hicolor-icon-theme
 Requires:	libreport-gtk >= 2.4.0
 Requires:	python3-dbus
+Requires:	python3-humanize >= 2.4.0
 Requires:	python3-libreport >= 2.4.0
 Requires:	python3-pygobject3 >= 3.29.1
 Requires:	python3-pyinotify
