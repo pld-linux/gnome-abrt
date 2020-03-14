@@ -5,39 +5,37 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.2.5
-Release:	6
+Version:	1.3.1
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
-Source0:	https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
-# Source0-md5:	e3ab0e2c43bb6b28f29eced47cca8d67
-Patch0:		%{name}-pylint.patch
-URL:		https://github.com/abrt/abrt/wiki/ABRT-Project
-BuildRequires:	abrt-gui-devel >= 2.1.7
+#Source0Download: https://github.com/abrt/gnome-abrt/releases
+Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	2529440838d44afe7c4696e2f76b4986
+URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
+BuildRequires:	abrt-devel >= 2.4.0
 BuildRequires:	asciidoc
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
-BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libreport-gtk-devel >= 2.0.20
-BuildRequires:	libtool
+BuildRequires:	libreport-gtk-devel >= 2.4.0
+BuildRequires:	meson >= 0.51.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	pylint}
 BuildRequires:	python3-devel >= 1:3.4
 %{?with_tests:BuildRequires:	python3-libreport}
-BuildRequires:	python3-pygobject3-devel >= 3.0
+BuildRequires:	python3-pygobject3-devel >= 3.29.1
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
-BuildRequires:	xorg-lib-libX11-devel
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	abrt-dbus
-Requires:	abrt-gui-libs >= 2.1.7
+Requires:	abrt-gui-libs >= 2.4.0
 Requires:	hicolor-icon-theme
+Requires:	libreport-gtk >= 2.4.0
 Requires:	python3-dbus
-Requires:	python3-libreport
-Requires:	python3-pygobject3 >= 3.0
+Requires:	python3-libreport >= 2.4.0
+Requires:	python3-pygobject3 >= 3.29.1
 Requires:	python3-pyinotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,38 +49,27 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 
 %prep
 %setup -q
-%patch0 -p1
-
-%{__sed} -i -e 's#-pedantic##g' configure.ac
-%{__sed} -i -e '1s,#!/usr/bin/env python,#!/usr/bin/python,' src/gnome-abrt
-
-%{__sed} -n -e '/^%%changelog/,$' gnome-abrt.spec.in | tail -n +2 > changelog
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-%configure \
-	--disable-silent-rules \
-	%{!?with_tests:--with-nopylint}
+%meson build \
+	%{!?with_tests:-Dlint=false}
 
-%{__make}
+%ninja_build -C build
 
-%{?with_tests:%{__make} check}
+%if %{with tests}
+%ninja_test -C build
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/gnome_abrt/wrappers/*.la
-%py_postclean
+%ninja_install -C build
 
-# packaged as %doc
-%{__rm} $RPM_BUILD_ROOT%{_docdir}/gnome-abrt/README.md
+%py3_comp $RPM_BUILD_ROOT%{py3_sitedir}
+%py3_ocomp $RPM_BUILD_ROOT%{py3_sitedir}
 
 %find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -94,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README.md changelog
+%doc README.md
 %attr(755,root,root) %{_bindir}/gnome-abrt
 %dir %{py3_sitedir}/gnome_abrt
 %{py3_sitedir}/gnome_abrt/*.py
@@ -105,11 +92,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/gnome_abrt/wrappers
 %{py3_sitedir}/gnome_abrt/wrappers/__init__.py
 %{py3_sitedir}/gnome_abrt/wrappers/__pycache__
-%attr(755,root,root) %{py3_sitedir}/gnome_abrt/wrappers/_wrappers.so
+%attr(755,root,root) %{py3_sitedir}/gnome_abrt/wrappers/_wrappers.cpython-*.so
 %{_datadir}/gnome-abrt
-%{_datadir}/appdata/gnome-abrt.appdata.xml
-%{_desktopdir}/gnome-abrt.desktop
-%{_iconsdir}/hicolor/*x*/apps/gnome-abrt.png
-%{_iconsdir}/hicolor/*x*/status/gnome-abrt.png
-%{_iconsdir}/hicolor/symbolic/apps/gnome-abrt-symbolic.svg
+%{_datadir}/metainfo/org.freedesktop.GnomeAbrt.appdata.xml
+%{_desktopdir}/org.freedesktop.GnomeAbrt.desktop
+%{_iconsdir}/hicolor/scalable/apps/org.freedesktop.GnomeAbrt.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.freedesktop.GnomeAbrt-symbolic.svg
 %{_mandir}/man1/gnome-abrt.1*
