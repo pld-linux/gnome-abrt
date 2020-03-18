@@ -6,7 +6,7 @@ Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
 Version:	1.3.1
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
@@ -35,7 +35,7 @@ Requires:	abrt-gui-libs >= 2.4.0
 Requires:	hicolor-icon-theme
 Requires:	libreport-gtk >= 2.4.0
 Requires:	python3-dbus
-Requires:	python3-humanize >= 2.4.0
+Requires:	python3-humanize >= 2.0.0
 Requires:	python3-libreport >= 2.4.0
 Requires:	python3-pygobject3 >= 3.29.1
 Requires:	python3-pyinotify
