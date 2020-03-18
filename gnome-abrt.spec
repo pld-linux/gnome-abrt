@@ -35,7 +35,7 @@ Requires:	abrt-gui-libs >= 2.4.0
 Requires:	hicolor-icon-theme
 Requires:	libreport-gtk >= 2.4.0
 Requires:	python3-dbus
-Requires:	python3-humanize >= 2.0.0
+Requires:	python3-humanize
 Requires:	python3-libreport >= 2.4.0
 Requires:	python3-pygobject3 >= 3.29.1
 Requires:	python3-pyinotify
