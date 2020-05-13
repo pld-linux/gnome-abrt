@@ -5,13 +5,13 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.3.1
-Release:	3
+Version:	1.3.2
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
 Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	2529440838d44afe7c4696e2f76b4986
+# Source0-md5:	07c804c2edd6ffaa3abeb1a3313e0515
 URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
 BuildRequires:	abrt-gui-devel >= 2.4.0
 BuildRequires:	asciidoc
@@ -88,9 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/gnome_abrt
 %{py3_sitedir}/gnome_abrt/*.py
 %{py3_sitedir}/gnome_abrt/__pycache__
-%dir %{py3_sitedir}/gnome_abrt/url
-%{py3_sitedir}/gnome_abrt/url/*.py
-%{py3_sitedir}/gnome_abrt/url/__pycache__
 %dir %{py3_sitedir}/gnome_abrt/wrappers
 %{py3_sitedir}/gnome_abrt/wrappers/__init__.py
 %{py3_sitedir}/gnome_abrt/wrappers/__pycache__
