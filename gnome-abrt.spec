@@ -6,7 +6,7 @@ Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
 Version:	1.3.6
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
