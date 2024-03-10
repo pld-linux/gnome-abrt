@@ -5,23 +5,23 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.3.6
-Release:	5
+Version:	1.4.3
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
 Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a67842517efcb11c17a5bdf3976d6e60
+# Source0-md5:	cebca029db214213634024b144111fbe
 URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
 BuildRequires:	abrt-gui-devel >= 2.4.0
 BuildRequires:	asciidoc
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	libreport-gtk-devel >= 2.4.0
-BuildRequires:	meson >= 0.51.0
+BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-%{?with_tests:BuildRequires:	pylint}
+%{?with_tests:BuildRequires:	py3lint}
 BuildRequires:	python3-devel >= 1:3.4
 %{?with_tests:BuildRequires:	python3-humanize}
 %{?with_tests:BuildRequires:	python3-libreport}
@@ -54,7 +54,7 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 
 %build
 %meson build \
-	%{!?with_tests:-Dlint=false}
+	%{?with_tests:-Dlint=true}
 
 %ninja_build -C build
 
