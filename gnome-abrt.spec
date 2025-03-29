@@ -5,20 +5,21 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.4.3
-Release:	3
+Version:	1.5.0
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
 Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	cebca029db214213634024b144111fbe
+# Source0-md5:	04ba48728221f7b58aa23072847907d0
 URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
-BuildRequires:	abrt-gui-devel >= 2.4.0
+BuildRequires:	abrt-gui-devel >= 2.14.0
 BuildRequires:	asciidoc
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	gtk+3-devel >= 3.0
-BuildRequires:	libreport-gtk-devel >= 2.4.0
-BuildRequires:	meson >= 0.59.0
+BuildRequires:	gtk4-devel >= 4.0
+BuildRequires:	libadwaita-devel
+BuildRequires:	libreport-gtk-devel >= 2.14.0
+BuildRequires:	meson >= 0.63.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 %{?with_tests:BuildRequires:	py3lint}
@@ -26,19 +27,23 @@ BuildRequires:	python3-devel >= 1:3.4
 %{?with_tests:BuildRequires:	python3-humanize}
 %{?with_tests:BuildRequires:	python3-libreport}
 BuildRequires:	python3-pygobject3-devel >= 3.29.1
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 BuildRequires:	xmlto
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	abrt-dbus
-Requires:	abrt-gui-libs >= 2.4.0
+Requires:	abrt-dbus >= 2.14.0
+Requires:	abrt-gui-libs >= 2.14.0
+# Gtk-4.0.typelib
+Requires:	gtk4 >= 4.0
 Requires:	hicolor-icon-theme
-Requires:	libreport-gtk >= 2.4.0
+# Adw-1.typelib
+Requires:	libadwaita
+Requires:	libreport-gtk >= 2.14.0
+Requires:	python3-bs4
 Requires:	python3-dbus
 Requires:	python3-humanize
-Requires:	python3-libreport >= 2.4.0
+Requires:	python3-libreport >= 2.14.0
 Requires:	python3-pygobject3 >= 3.29.1
-Requires:	python3-pyinotify
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,19 +58,19 @@ zapewniająca wygodny sposób zarządzania tymi problemami.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{?with_tests:-Dlint=true}
 
-%ninja_build -C build
+%meson_build
 
 %if %{with tests}
-%ninja_test -C build
+%meson_test
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %py3_comp $RPM_BUILD_ROOT%{py3_sitedir}
 %py3_ocomp $RPM_BUILD_ROOT%{py3_sitedir}
