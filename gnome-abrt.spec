@@ -5,13 +5,13 @@
 Summary:	A utility for viewing problems that have occurred with the system
 Summary(pl.UTF-8):	Narzędzie do przeglądania problemów, które wystąpiły w systemie
 Name:		gnome-abrt
-Version:	1.5.0
+Version:	1.5.2
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 #Source0Download: https://github.com/abrt/gnome-abrt/releases
 Source0:	https://github.com/abrt/gnome-abrt/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	04ba48728221f7b58aa23072847907d0
+# Source0-md5:	19a5b30aaa20b0e8013d749de4d77dde
 URL:		https://github.com/abrt/abrt/wiki/gnome-abrt
 BuildRequires:	abrt-gui-devel >= 2.14.0
 BuildRequires:	asciidoc
